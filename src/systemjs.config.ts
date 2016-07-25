@@ -29,9 +29,11 @@ const barrels: string[] = [
   '@angular/router',
   '@angular/platform-browser',
   '@angular/platform-browser-dynamic',
+  'upgrade',
 
   // Thirdparty barrels.
   'rxjs',
+  'angular2-in-memory-web-api',
 
   // App specific barrels.
   'app',
@@ -52,6 +54,7 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
+    'angular2-in-memory-web-api': 'vendor/angular2-in-memory-web-api',
     'main': 'main.js'
   },
   packages: cliSystemConfigPackages
@@ -59,3 +62,4 @@ System.config({
 
 // Apply the user's configuration.
 System.config({ map, packages });
+
