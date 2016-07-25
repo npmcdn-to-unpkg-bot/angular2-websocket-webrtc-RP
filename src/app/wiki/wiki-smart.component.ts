@@ -6,18 +6,10 @@ import { Subject }          from 'rxjs/Subject';
 import { WikipediaService } from './wikipedia.service';
 
 @Component({
-  selector: 'my-wiki-smart',
-  template: `
-    <h1>Smarter Wikipedia Demo</h1>
-    <p><i>Fetches when typing stops</i></p>
-
-    <input #term (keyup)="search(term.value)"/>
-
-    <ul>
-      <li *ngFor="let item of items | async">{{item}}</li>
-    </ul>
-  `,
-  providers: [JSONP_PROVIDERS, WikipediaService]
+    moduleId: module.id,
+    selector: 'my-wiki-smart',
+    templateUrl: 'wiki-smart.component.html',    
+    providers: [JSONP_PROVIDERS, WikipediaService]
 })
 export class WikiSmartComponent {
 
@@ -32,10 +24,3 @@ export class WikiSmartComponent {
     .distinctUntilChanged()
     .switchMap((term: string) => this.wikipediaService.search(term));
 }
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
