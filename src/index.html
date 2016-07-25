@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>TestNg2</title>
+  <title>Ng2 WebSphone</title>
   <base href="/">
 
   {{#unless environment.production}}
@@ -10,16 +10,27 @@
   {{/unless}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="sample.css">
+
+  <!-- Polyfill(s) for older browsers -->
+  <script src="https://npmcdn.com/core-js/client/shim.min.js"></script>
+  <script src="https://npmcdn.com/zone.js@0.6.12?main=browser"></script>
+  <script src="https://npmcdn.com/reflect-metadata@0.1.3"></script>
+  <script src="https://npmcdn.com/systemjs@0.19.27/dist/system.src.js"></script>
+
 </head>
 <body>
-  <app-root>Loading...</app-root>
+  <!--<app-root>Loading...</app-root>-->
+  <my-app>Loading...</my-app>
   
     {{#each scripts.polyfills}}
     <script src="{{.}}"></script>
     {{/each}}
     <script>
-      System.import('system-config.js').then(function () {
-        System.import('main');
+      System.import('systemjs.config.js').then(function () {
+        System.import('./app/main');
       }).catch(console.error.bind(console));
     </script>
   
