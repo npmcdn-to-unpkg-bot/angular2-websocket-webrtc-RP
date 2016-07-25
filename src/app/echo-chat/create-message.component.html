@@ -1,0 +1,14 @@
+<form #sendMsg="ngForm" (ngSubmit)="onSubmit()">
+    <div class="input-group col-xs-8">
+        <input #term (keyup)="search(term.value)" [(ngModel)]="message.message" ngControl="msg" required type="text" class="form-control" placeholder="message...">
+        <span class="input-group-btn">
+                    <button
+                        [disabled]="!sendMsg.form.valid"
+                        class="btn btn-secondary"
+                        type="submit">send</button>
+                </span>
+    </div>
+</form>
+<ul>
+    <li *ngFor="let item of items | async">{{item}}</li>
+</ul>

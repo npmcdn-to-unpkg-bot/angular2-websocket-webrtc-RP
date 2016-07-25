@@ -1,29 +1,18 @@
 import {ChatService} from './chat.service'
 import {Component} from '@angular/core';
 
+import { JSONP_PROVIDERS }  from '@angular/http';
+import { Observable }       from 'rxjs/Observable';
+import { Subject }          from 'rxjs/Subject';
+
+import { WikipediaService } from '../wiki/wikipedia.service';
+
 @Component({
+    moduleId: module.id,
     selector: 'create-message',
-    template: `
-        <form #sendMsg="ngForm" (ngSubmit)="onSubmit()">
-            <div class="input-group col-xs-8">
-                <input
-                    [(ngModel)]="message.message"
-                    ngControl="msg"
-                    required
-                    type="text"
-                    class="form-control"
-                    placeholder="message...">
-                <span class="input-group-btn">
-                    <button
-                        [disabled]="!sendMsg.form.valid"
-                        class="btn btn-secondary"
-                        type="submit">send</button>
-                </span>
-            </div>
-        </form>
-    `,
+    templateUrl: 'create-message.component.html', 
     directives: [],
-    providers: [ChatService]
+    providers: [ChatService, JSONP_PROVIDERS, WikipediaService]
 })
 
 export class CreateMessage {
@@ -33,8 +22,16 @@ export class CreateMessage {
         message: '',
     }
 
-    constructor(private chatService: ChatService) {}
+    constructor(private chatService: ChatService, private wikipediaService: WikipediaService) {}
 
+    private searchTermStream = new Subject<string>();
+
+    search(term: string) { this.searchTermStream.next(term); }
+
+    items: Observable<string[]> = this.searchTermStream
+    .debounceTime(300)
+    .distinctUntilChanged()
+    .switchMap((term: string) => this.wikipediaService.search(term));
     private onSubmit() {
         this.chatService.messages.next(this.message);
         this.message.message = '';
