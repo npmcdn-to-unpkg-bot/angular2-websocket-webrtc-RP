@@ -6,6 +6,7 @@ import { HeroDetailComponent } from './hero/hero-detail.component';
 
 import { WikiComponent }      from './wiki/wiki.component';
 import { WikiSmartComponent } from './wiki/wiki-smart.component';
+import { EchoChatComponent } from './echo-chat/echo-chat.component';
 
 const routes: RouterConfig = [
   {
@@ -32,16 +33,13 @@ const routes: RouterConfig = [
   {
       path: 'wiki-smart',
       component: WikiSmartComponent
+  },
+  {
+      path: 'echo-chat',
+      component: EchoChatComponent
   }
 ];
 
 export const appRouterProviders = [
   provideRouter(routes)
 ];
-
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
