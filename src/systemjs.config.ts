@@ -8,7 +8,9 @@
  * User Configuration.
  **********************************************************************************************/
 /** Map relative paths to URLs. */
+/** angular2-material */
 const map: any = {
+  '@angular2-material': 'vendor/@angular2-material'
 };
 
 /** User packages configuration. */
@@ -40,6 +42,31 @@ const barrels: string[] = [
   'app/shared',
   /** @cli-barrel */
 ];
+
+/** angular2-material */
+
+const materialPkgs:string[] = [
+  'core',
+  'toolbar',
+  'icon',
+  'button',
+  'sidenav',
+  'list',
+  'card',
+  'input',
+  'menu',
+  'toolbar',
+  'checkbox',
+  'radio',
+  'list',
+  'slide-toggle'
+];
+
+materialPkgs.forEach((pkg) => {
+  packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
+});
+
+
 
 const cliSystemConfigPackages: any = {};
 barrels.forEach((barrelName: string) => {

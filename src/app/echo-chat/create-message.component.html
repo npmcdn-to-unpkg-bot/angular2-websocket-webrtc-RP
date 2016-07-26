@@ -1,6 +1,6 @@
 <form #sendMsg="ngForm" (ngSubmit)="onSubmit()">
     <div class="input-group col-xs-8">
-        <input #term (keyup)="search(term.value)" [(ngModel)]="message.message" ngControl="msg" required type="text" class="form-control" placeholder="message...">
+        <input #term (keyup)="search(term.value)" [(ngModel)]="message.message" [ngModelOptions]="{standalone: true}" ngControl="msg" required type="text" class="form-control" placeholder="message...">
         <span class="input-group-btn">
                     <button
                         [disabled]="!sendMsg.form.valid"
